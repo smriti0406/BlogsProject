@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlogsBook</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'BlogsBook/style2.css' %}">
+</head>
+<body>
+<div class="navbar">
+    <h1>Search</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="search", placeholder="type here">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div class="links">
+        <p><u>Category </u>      <a href="{% url 'BlogsBook:user-search' %}">User</a></p>
+</div>
+<hr>
+{% if list %}
+    <div class="list">
+        {% for category in list %}
+            <a href="{% url 'BlogsBook:category-query' category.name %}">{{ category }}</a><br>
+        {% endfor %}
+    </div>
+{% else %}
+     <div class="main">
+       {% if error %}
+         <h2 style="color: darkslateblue;">{{ error }}</h2>
+       {% endif %}
+       {% for blog in list2 %}
+         <div class="list2">
+             <a style="font-size: 25px" href="{% url 'BlogsBook:view-blog' blog.id %}">{{ blog.Title }}</a>
+             {{ blog.Creator }}<br>
+             {{ blog.Content | truncatewords:10 }}
+         </div>
+       {% endfor %}
+     </div>
+{% endif %}
+</body>
+</html>

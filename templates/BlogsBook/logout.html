@@ -1,0 +1,10 @@
+{% extends 'BlogsBook/Base1.html' %}
+{% block content %}
+    <div class="container">
+      <h1>You are Logged Out.....</h1>
+
+      <small>
+          Want to Login again....?<a href="{% url 'BlogsBook:user-login' %}">Click here..</a>
+      </small>
+  </div>
+{% endblock content %}

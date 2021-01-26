@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlogsBook</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'BlogsBook/style.css' %}">
+</head>
+<body>
+<div class="navbar">
+    <a href="{% url 'BlogsBook:home' %}"><h1>BlogsBook</h1></a>
+    <div class="navbar-left">
+        <a href="{% url 'BlogsBook:add-blog'%}">New blog</a>
+        <a href="{% url 'BlogsBook:category-search' %}">Search</a>
+        <a href="{% url 'BlogsBook:view-user' user.id %}">View Account</a>
+        <a href="{% url 'BlogsBook:user-logout' %}">Logout</a><br>
+    </div>
+</div>
+<hr>
+
+<div class="container">
+    {% block content %}
+    {% endblock content %}
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-position: center;
+}
+h1{
+    color: darkslateblue;
+    position: absolute;
+    top: 50px;
+    left: 300px;
+}
+.main{
+    width: 400px;
+    position: absolute;
+    top: 120px;
+    left: 300px;
+    border-left: 5px solid #999 ;
+    border-bottom: 5px solid #999;
+    border-right: 5px solid #999;
+    border-top: 1px solid black;
+    border-radius: 5px;
+}
+.main form{
+    margin: 10px;
+    width: 280px;
+    padding: 10px;
+}
+
+.main form input{
+    width: 100%;
+    padding: 10px 5px;
+    margin: 5px 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+.main form label{
+    padding: 5px;
+    font-size: 25px;
+    color: darkslateblue;
+}
+.main form button{
+    width: 110px;
+    height: 35px;
+    margin: 0 10px;
+    background: linear-gradient(to right, darkslateblue, darkslateblue);
+    border-radius: 30px;
+    border: 0;
+    outline: black;
+    color: #ffffff;
+    cursor: pointer;
+    position: marker;
+}
+.main h3{
+    position: relative;
+    top: 10px;
+    left: 10px;
+    padding: 5px;
+}
+.main .cancel{
+    position: relative;
+    top: -50px;
+    left: 250px;
+}

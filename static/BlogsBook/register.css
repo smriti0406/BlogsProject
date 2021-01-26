@@ -1,0 +1,69 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-position: center;
+}
+img{
+    width:950px;
+    height:710px;
+}
+.leftPart .container{
+    width: 360px;
+    height: 400px;
+    margin: 8% auto;
+    background: #fff;
+    border-radius: 5px;
+    position: absolute;
+    right: 150px;
+    top: 0px;
+}
+h1{
+     text-align: center;
+     margin-bottom: 15px;
+     color: darkslateblue;
+}
+h3{
+     text-align: center;
+    color: darkslateblue;
+}
+h2{
+    text-align: center;
+    margin-bottom: 40px;
+    color: #777;
+}
+.leftPart .container form{
+    width: 280px;
+    position: absolute;
+    top: 120px;
+    left: 50px;
+    padding: 10px;
+
+}
+.leftPart .container form input{
+    width: 100%;
+    padding: 10px 5px;
+    margin: 5px 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+
+
+.leftPart .container form input.button{
+    width: 110px;
+    height: 35px;
+    margin: 0 10px;
+    background: linear-gradient(to right, darkslateblue, darkslateblue);
+    border-radius: 30px;
+    border: 0;
+    outline: black;
+    color: #ffffff;
+    cursor: pointer;
+    position: marker;
+}
+.account{
+    top: 700px;
+}

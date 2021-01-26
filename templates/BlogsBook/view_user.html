@@ -1,0 +1,57 @@
+{% extends 'BlogsBook/base.html' %}
+{% block content %}
+    {% load static %}
+<div class="main-content">
+<div id="blog">
+    <div class="block">
+        <h1>{{ current_user.username }}</h1>
+        <div class="image">
+        {% if info.profile_pic  %}
+          hi
+        {% else %}
+          <img src="{% static 'BlogsBook/default.png' %}">
+        {% endif %}
+    </div>
+    <p class="para" style="padding: 5px;">
+        <small class="label">
+            Name:
+        </small>
+        {{ current_user.first_name }} {{ current_user.last_name }}<br>
+        <small class="label">
+            Email:
+        </small>
+        {{ current_user.email }}<br>
+        <small class="label">
+            Date of Birth:
+        </small>
+        {{ info.DOB }}<br>
+        <small class="label">
+            Gender:
+        </small>
+        {% if info.Gender == 'f' %}
+            Female
+        {% elif info.Gender == 'm'%}
+            Male
+        {% endif %}
+        <br>
+        <small class="label">
+            City:
+        </small>
+        {{ info.city }}<br>
+        <small class="label">
+            Profession:
+        </small>
+        {{ info.profession }}
+    </p>
+
+    <div class="editing">
+        {% if user == current_user %}
+           <a href="{% url 'BlogsBook:edit-user' %}">Edit user</a>
+           <a href="{% url 'BlogsBook:delete-user' %}">Delete account</a>
+        {% endif %}
+    </div>
+    </div>
+
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlogsBook</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'BlogsBook/style3.css' %}">
+</head>
+<body>
+<h1>Write your thoughts here....</h1>
+<div class="main">
+    <form method="post">
+    {% csrf_token %}
+    {{ blog.errors }}
+    {{ category.errors }}
+    <label>{{ blog.Title.label_tag }}</label>
+    {{ blog.Title }}
+    <label>{{ blog.Content.label_tag }}</label>
+    {{ blog.Content }}
+    <label>Categories:</label>
+    {{ category.name }}
+    <button type="submit">Post</button>
+  </form>
+</div>
+</body>
+</html>

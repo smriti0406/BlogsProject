@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlogsBook</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'BlogsBook/register.css' %}">
+</head>
+<body>
+   <div>
+       <div class = "photo">
+          <img src="{% static 'BlogsBook/img3.jpg' %}">
+       </div>
+       <div class="leftPart">
+          {% block content %} {% endblock content %}
+       </div>
+   </div>
+
+</body>
+</html>

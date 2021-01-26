@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlogsBook</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'BlogsBook/style3.css' %}">
+</head>
+<body>
+<h1>Edit your detail here...</h1>
+{% if error %}
+    <h2>{{ error }}</h2>
+{% endif %}
+<div class="main">
+    <form method="post">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" name="username" value="{{ user.username }}">
+    <label for="city">City:</label>
+    <input type="text" name="city" value="{{ info.city }}">
+    <label for="profession">Profession:</label>
+    <input type="text" name="profession" value="{{ info.profession }}">
+        <label for="profile_pic">Profile Picture:</label>
+        <input type="image" name="profile_pic" alt="Choose file">
+    <button type="submit">Submit</button>
+</form>
+</div>
+</body>
+</html>

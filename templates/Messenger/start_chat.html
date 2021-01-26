@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlogsBook-Messenger</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'BlogsBook/style2.css' %}">
+</head>
+<body>
+   <div class="navbar">
+       <h1>Find Your Friend</h1>
+       <form method="post">
+           {% csrf_token %}
+           <input type="text" name="search", placeholder="type here">
+           <button type="submit">Search</button>
+       </form>
+
+   </div>
+   <hr>
+   <div class="list">
+        {% if users.count == 0 %}
+            User not exists
+        {% endif %}
+        {% for user in users %}
+            <a href="#">{{ user }}</a><br>
+        {% endfor %}
+    </div>
+</body>
+</html>

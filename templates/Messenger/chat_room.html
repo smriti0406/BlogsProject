@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlogsBook-Messenger</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Messenger/style.css' %}">
+</head>
+<body>
+<h1>
+    {% if chat_room.first == user %}
+        {{ chat_room.second }}
+    {% else %}
+        {{ chat_room.first }}
+    {% endif %}
+</h1>
+<div class="main">
+    <div class="messages">
+        {% for chat in chat_room.chatmessage_set.all %}
+        <div class = "chat">
+           <p>{{ chat.author }}</p>
+            {{ chat.message }}
+        </div>
+    {% endfor %}
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="message" placeholder="Start typing....">
+        <button type="submit" name="Enter">Enter</button>
+    </form>
+</div>
+</body>
+</html>

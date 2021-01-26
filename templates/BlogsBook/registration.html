@@ -1,0 +1,38 @@
+
+
+     {% extends 'BlogsBook/Base1.html' %}
+     {% block content %}
+      <div class="container">
+          {% if registered %}
+           <h1>Thank you for registering!</h1>
+          {% else %}
+              <h1>Welcome to BlogsBook</h1>
+             <h3>To get started register Your self here</h3>
+             <form id="Form1" method="POST" >
+                {% csrf_token %}
+                {{ user_form.errors }}
+                 {% for field in user_form %}
+                  <label class="label">{{ field.label_tag }}</label>
+                     {{ field }}
+                 {% endfor %}
+                  <h2>Bit Information more.....</h2>
+                  {{ personal_form.errors }}
+                  <label>{{ personal_form.Gender.label_tag }}</label>
+                  {{ personal_form.Gender }}
+                  <br>
+                  <label>{{ personal_form.DOB.label_tag }}</label>
+                  {{ personal_form.DOB }}
+                   <h2>A bit more and you are ready to go........</h2>
+                  <label>{{ personal_form.city.label_tag }}</label>
+                  {{ personal_form.city }}
+                  <label><label>{{ personal_form.profession.label_tag }}</label></label>
+                  {{ personal_form.profession }}
+                  <input class = "button" type="submit" name="" value="Register">
+              </form>
+              <div class="account">
+              Already have an account....?
+              <a href="{% url 'BlogsBook:user-login' %}">Login here</a>
+              </div>
+          {% endif %}
+      </div>
+    {% endblock content %}

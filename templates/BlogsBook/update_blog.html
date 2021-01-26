@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlogsBook</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'BlogsBook/style3.css' %}">
+</head>
+<body>
+<h1>Write your thoughts here....</h1>
+<div class="main">
+    <form method="post">
+    {% csrf_token %}
+        <label for="Title">Title</label>
+        <input type="text" name="Title" value="{{ blog.Title }}">
+        <label for="Content">Content</label>
+        <textarea name="Content" rows="20" cols="45">
+            {{ blog.Content }}
+        </textarea>
+{#        <input type="text" name="Content" value="{{ blog.Content }}">#}
+        <label for="category">Category</label>
+        <input type="text" name="category" value="{{ category }}">
+    <button type="submit">Update</button>
+  </form>
+</div>
+</body>
+</html>

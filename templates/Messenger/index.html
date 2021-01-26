@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlogsBook-Messenger</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'BlogsBook/style.css' %}">
+</head>
+<body>
+<div class="navbar">
+    <a href="{% url 'Messenger:messenger-index' %}"><h1>Messenger</h1></a>
+    <div class="navbar-left">
+        <a href="{% url 'Messenger:messenger-newchat' %}">New Chat</a>
+        <a href="{% url 'BlogsBook:view-user' user.id %}">View Account</a>
+        <a href="{% url 'BlogsBook:user-logout' %}">Logout</a><br>
+    </div>
+</div>
+<hr>
+
+<div class="container">
+    {% block content %}
+        <div class="main-content">
+           {% for chat_room in chat_rooms %}
+               <div id="blog">
+                   <div>
+                       <a id="friend" class="title" href={% url 'Messenger:messenger-chatroom' chat_room.id  %}>
+                              {% if chat_room.first == user %}
+                                  {{ chat_room.second }}
+                              {% else %}
+                                  {{ chat_room.first }}
+                              {% endif %}
+                          </a>
+                   </div>
+                   <div class="content">
+                      {% if chat_room.chatmessage_set.count  %}
+                          {{  chat_room.chatmessage_set.first.message | truncatechars:10 }}
+                       {% endif %}
+                   </div>
+               </div>
+           {% endfor %}
+        </div>
+    {% endblock content %}
+</div>
+</body>
+</html>

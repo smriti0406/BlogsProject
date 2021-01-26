@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-position: center;
+}
+h1{
+    color: darkslateblue;
+    font-size: 40px;
+}
+a:link {
+  text-decoration: none;
+    color: darkslateblue;
+    padding: 5px;
+    margin: 5px;
+}
+
+a:visited {
+  text-decoration: none;
+}
+a:active {
+  color: darkslateblue;
+}
+.navbar{
+    position: absolute;
+    left: 300px;
+    top: 40px;
+}
+.navbar input{
+
+    width: 250px;
+    padding: 10px 5px;
+    margin: 5px 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+    height: 20px;
+
+}
+.navbar button{
+    position: absolute;
+    left: 275px;
+    top: 55px;
+    width: 90px;
+    height: 30px;
+    margin: 0 10px;
+    background: linear-gradient(to right, darkslateblue, darkslateblue);
+    border-radius: 10px;
+    border: 0;
+    outline: black;
+    color: #ffffff;
+    cursor: pointer;
+    position: marker;
+}
+hr{
+    color: darkslateblue;
+    height: 1px;
+    background-color: darkslateblue;
+    width: 100%;
+    position: absolute;
+    top: 200px;
+}
+.links{
+    font-size: 25px;
+    position: absolute;
+    color: darkslateblue;
+    top: 160px;
+    left: 300px;
+}
+
+.list{
+    position: absolute;
+    top: 250px;
+    left: 300px;
+    font-size: 20px;
+}
+.main{
+    position: absolute;
+    top: 250px;
+    left: 300px;
+}
+.main .list2{
+    width: 350px;
+    margin: 10px;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    border-left: 3px solid #999 ;
+    border-bottom: 3px solid #999;
+    border-right: 3px solid #999;
+    border-top: 1px solid black;
+    border-radius: 5px;
+}
+

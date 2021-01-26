@@ -1,0 +1,50 @@
+{% extends 'BlogsBook/base.html' %}
+{% block content %}
+<div class="main-content" style="width: 750px">
+    {% if error %}
+        <h2 style="color: darkslateblue">{{ error }}</h2>
+    {% else %}
+       <div id = "blog">
+
+           <div style="padding-left: 10px;">
+               <h2 style="font-size: 32px">{{ blog.Title }}</h2><br>
+               <p style="font-size: 25px">Authored by: <a href="{% url 'BlogsBook:view-user' blog.Creator.id %}">{{ blog.Creator }}</a></p><br>
+           </div>
+           <div class="content">
+               <p>{{ blog.Content }}</p><br>
+               <p style="color: darkslateblue">
+                   Categories:
+                   {% for category in blog.Category.all %}
+                       <a href="{% url 'BlogsBook:category-query' category.name %}">{{ category }}</a>
+                   {% endfor %}
+                   <br>
+                   DatePosted: {{ blog.DatePosted }}
+                   <br>
+                   Comments:
+               </p>
+               <form method="post">
+                   {% csrf_token %}
+                   <input class="inp" type="text" name="comment" placeholder="Add comment">
+                   <input type="submit" value="Submit">
+               </form>
+           </div>
+
+           {% for comment in blog.comment_set.all %}
+               <div class="comment">
+                   Comment by: <a href="{% url 'BlogsBook:view-user' comment.user.id %}">{{ comment.user }}</a>
+                   <br>
+                   <p style="font-size: 25px">{{ comment.content }}</p>
+                   {{ comment.DatePosted }}
+                   {% if comment.user == user %}
+                       <a href="{% url 'BlogsBook:delete-comment' blog.id comment.id %}">Delete comment</a>
+                   {% endif %}
+               </div>
+           {% endfor %}
+           {% if blog.Creator == user %}
+               <a href="{% url 'BlogsBook:delete-blog' blog.id %}">Delete blog</a>
+               <a href="{% url 'BlogsBook:update-blog' blog.id %}">Update blog</a>
+           {% endif %}
+       </div>
+    {% endif %}
+</div>
+{% endblock content %}

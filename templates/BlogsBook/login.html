@@ -1,0 +1,19 @@
+{% extends 'BlogsBook/Base1.html' %}
+{% block content %}
+    <div class="container">
+      <h1>Login here to get Started.....</h1>
+        <form method="post" >
+          {% csrf_token %}
+          {# A more "HTML" way of creating the login form#}
+          <label for="username">Username:</label>
+          <input type="text" name="username" placeholder="Username">
+          <label for="password">Password:</label>
+          <input type="password" name="password" placeholder="Password">
+          <input class="button" type="submit" name="" value="Login">
+         </form>
+      <small>
+          Need an Account....?<a href="{% url 'BlogsBook:register' %}">Register here..</a>
+      </small>
+    <a href="{% url 'BlogsBook:reset-password' %}">Forget Password</a>
+  </div>
+{% endblock content %}
