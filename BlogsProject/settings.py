@@ -99,9 +99,9 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'BlogsDataSet',
         'CLIENT': {
-            'host': 'mongodb+srv://Smriti0406:Minuri98@smritiblogsbook.g1eif.mongodb.net/BlogsDataSet?retryWrites=true&w=majority',
-            'username': 'Smriti0406',
-            'password': 'Minuri98',
+            'host': "Your MongoDB DataBase Host",
+            'username': 'xxxxxxxx',
+            'password': 'xxxxxxx',
 
         }
     }
