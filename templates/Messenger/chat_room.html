@@ -20,6 +20,7 @@
         <div class = "chat">
            <p>{{ chat.author }}</p>
             {{ chat.message }}
+           <p>{{ chat.time }}</p>
         </div>
     {% endfor %}
     </div>
@@ -29,5 +30,30 @@
         <button type="submit" name="Enter">Enter</button>
     </form>
 </div>
+<script>
+    console.log(window.location)
+    let loc = window.location
+
+    let wsStart = 'ws://'
+    if(loc.protocol == 'https:'){
+        wsStart = 'wss://'
+    }
+    let endpoint = wsStart + loc.host + loc.pathname
+
+    let socket = new WebSocket(endpoint)
+    console.log(socket)
+    socket.onmessage = function (e){
+        console.log("message", e)
+    }
+    socket.onopen = function (e){
+        console.log("open", e)
+    }
+    socket.onerror = function (e){
+        console.log("error", e)
+    }
+    socket.onclose = function (e){
+        console.log("close", e)
+    }
+</script>
 </body>
 </html>

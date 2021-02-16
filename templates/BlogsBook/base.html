@@ -10,6 +10,7 @@
 <div class="navbar">
     <a href="{% url 'BlogsBook:home' %}"><h1>BlogsBook</h1></a>
     <div class="navbar-left">
+        <a href="{% url 'Messenger:messenger-index' %}">Messenger</a>
         <a href="{% url 'BlogsBook:add-blog'%}">New blog</a>
         <a href="{% url 'BlogsBook:category-search' %}">Search</a>
         <a href="{% url 'BlogsBook:view-user' user.id %}">View Account</a>

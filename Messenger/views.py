@@ -31,12 +31,28 @@ def chatroom(request, chatroom_id):
 def newchat(request):
     if request.method == "POST":
         try:
-            users = User.objects.get(username=request.POST['search'])
+            users = User.objects.filter(username__contains=request.POST['search']).exclude(username=request.user.username)
         except(KeyError, User.DoesNotExist):
             users = []
-        return HttpResponseRedirect(reverse('Messenger:messenger-newchat', kwargs={'users': users}))
+        return render(request, 'Messenger/start_chat.html', {'users': users})
+
     users = User.objects.all()
     return render(request, 'Messenger/start_chat.html', {'users': users})
+
+
+@login_required
+def createchat(request, friend_id):
+    friend = get_object_or_404(User, pk=friend_id)
+    if friend is request.user:
+        return HttpResponseRedirect(reverse('Messenger:messenger-index'))
+    query = (Q(first=request.user) & Q(second=friend)) | (Q(first=friend) & Q(second=request.user))
+    try:
+        chatroom = ChatRoom.objects.get(query)
+    except(KeyError, ChatRoom.DoesNotExist):
+        chatroom = ChatRoom.objects.create(first=request.user, second=friend)
+
+    return HttpResponseRedirect(reverse('Messenger:messenger-chatroom', kwargs={'chatroom_id': chatroom.id}))
+
 
 
 
