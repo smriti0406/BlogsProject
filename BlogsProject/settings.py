@@ -56,6 +56,15 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'BlogsProject.urls'
 ASGI_APPLICATION = 'BlogsProject.asgi.application'
 
+CHANNEL_LAYERS = {
+    'default': {
+         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+         'CONFIG': {
+           'hosts': ['127.0.0.1', '6379'],
+         },
+    },
+}
+
 os.path.join(BASE_DIR)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -99,9 +108,10 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'BlogsDataSet',
         'CLIENT': {
-            'host': "Your MongoDB DataBase Host",
-            'username': 'xxxxxxxx',
-            'password': 'xxxxxxx',
+            'host': 'mongodb+srv://Smriti0406:Minuri98@smritiblogsbook.g1eif.mongodb.net/BlogsDataSet?retryWrites=true&w=majority',
+            'username': 'Smriti0406',
+            'password': 'Minuri98',
+
 
         }
     }

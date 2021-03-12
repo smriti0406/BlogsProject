@@ -2,7 +2,7 @@ from djongo import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 # Create your models here.
-
+ 
 
 class UserProfileInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -10,7 +10,10 @@ class UserProfileInfo(models.Model):
     Gender = models.CharField(max_length=1)
     city = models.CharField(max_length=50)
     profession = models.CharField(max_length=50)
-    profile_pic = models.ImageField(upload_to='profile_pics', blank=True)
+    profile_pic = models.ImageField(upload_to='profile_pics/', blank=True)
+
+    # def file_and_pathname(self):
+    #     upload_to =
 
     def __str__(self):
         return self.user.username
@@ -29,6 +32,7 @@ class Blog(models.Model):
     Category = models.ManyToManyField(Category)
     DatePosted = models.DateTimeField(default=timezone.now)
     Creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    sentiment = models.BooleanField(default=1)
 
     def __str__(self):
         return self.Title

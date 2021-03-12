@@ -7,7 +7,11 @@
        <div id = "blog">
 
            <div style="padding-left: 10px;">
-               <h2 style="font-size: 32px">{{ blog.Title }}</h2><br>
+               {% if blog.sentiment %}
+                   <h2 style="font-size: 32px">{{ blog.Title }}</h2><br>
+               {% else %}
+                   <h2 style="font-size: 32px" style="color: red">{{ blog.Title }}</h2><br>
+               {% endif %}
                <p style="font-size: 25px">Authored by: <a href="{% url 'BlogsBook:view-user' blog.Creator.id %}">{{ blog.Creator }}</a></p><br>
            </div>
            <div class="content">

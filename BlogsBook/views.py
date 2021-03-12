@@ -8,8 +8,11 @@ from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.contrib.auth import logout
 from django.core.paginator import Paginator
-
+import boto3
 # Create your views here.
+
+
+comprehend = boto3.client(service_name='comprehend', region_name='us-east-2')
 
 
 def register(request):
@@ -24,6 +27,7 @@ def register(request):
             personal = personal_form.save(commit=False)
             personal.user = user
             personal_form.save()
+            print(personal_form)
             registered = True
             return HttpResponseRedirect(reverse('BlogsBook:user-login'))
         else:
@@ -53,6 +57,13 @@ def add_blog(request):
             categories = request.POST['name'].split(", ")
             blog = blog_form.save(commit=False)
             blog.Creator = User.objects.get(username=request.user)
+            sentiment_data = comprehend.detect_sentiment(Text=request.POST['Content'], LanguageCode='en')
+
+            if sentiment_data['Sentiment'] == 'NEGATIVE':
+                print(sentiment_data)
+                blog.sentiment = False
+            else:
+                blog.sentiment = True
             blog.save()
             for category in categories:
                 c = Category(name=category)

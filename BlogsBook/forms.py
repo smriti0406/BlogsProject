@@ -44,19 +44,21 @@ class PersonalForm(forms.ModelForm):
     DOB = forms.DateField(required=True)
     city = forms.CharField(max_length=50)
     profession = forms.CharField(max_length=50)
+    profile_pics = forms.ImageField(required=False)
 
     class Meta:
         model = UserProfileInfo
-        fields = ['Gender', 'DOB', 'city', 'profession']
+        fields = ['Gender', 'DOB', 'city', 'profession', 'profile_pics']
 
 
 class BlogForm(forms.ModelForm):
     Title = forms.CharField(max_length=100)
     Content = forms.Textarea()
+    sentiment = forms.BooleanField(required=False)
 
     class Meta:
         model = Blog
-        fields = ['Title', 'Content']
+        fields = ['Title', 'Content', 'sentiment']
 
 
 class CategoryForm(forms.ModelForm):

@@ -15,7 +15,7 @@
     {% endif %}
 </h1>
 <div class="main">
-    <div class="messages">
+    <div id="chat-items" class="messages">
         {% for chat in chat_room.chatmessage_set.all %}
         <div class = "chat">
            <p>{{ chat.author }}</p>
@@ -24,15 +24,22 @@
         </div>
     {% endfor %}
     </div>
-    <form method="post">
+    <form id="formdata" method="post">
         {% csrf_token %}
-        <input type="text" name="message" placeholder="Start typing....">
-        <button type="submit" name="Enter">Enter</button>
+        <input id="message" type="text" name="message" placeholder="Start typing...." required>
+        <button id="button" type="submit" name="Enter">Enter</button>
     </form>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.js"
+integrity="sha512-SxQulwFs2B38bmUJtBSo9tD07MDrtCbY8me3AOZ14tRknCPTeMDLvCQV4ekhs8R0o9QPnW5HQanKfveexVcwLA=="
+crossorigin="anonymous"></script>
 <script>
     console.log(window.location)
     let loc = window.location
+    let formData = document.getElementById('formdata')
+    let msgInput = document.getElementById('message')
+    let chatHolder = document.getElementById('chat-items')
+    let button = document.getElementById('button')
 
     let wsStart = 'ws://'
     if(loc.protocol == 'https:'){
@@ -40,13 +47,30 @@
     }
     let endpoint = wsStart + loc.host + loc.pathname
 
-    let socket = new WebSocket(endpoint)
+    let socket = new ReconnectingWebSocket(endpoint)
     console.log(socket)
     socket.onmessage = function (e){
         console.log("message", e)
+        var chatDataMsg = JSON.parse(e.data)
+        chatHolder.append("<li>"+ chatDataMsg.message +  "</li>")
     }
     socket.onopen = function (e){
         console.log("open", e)
+        {#  formData.submit(function(event){#}
+        {#    event.preventDefault()#}
+        {#    let msgText = msgInput.val()#}
+        {#    var finaldata = {#}
+        {#       'message': msgText#}
+        {#    }#}
+        {#    socket.send(JSON.stringify(finaldata))#}
+        {#    formData[0].reset()#}
+        {#})#}
+        button.addEventListener('click',  function(event){
+            event.preventDefault()
+            let msgText = msgInput.val();
+            var finaldata =n
+        })
+    }
     }
     socket.onerror = function (e){
         console.log("error", e)
