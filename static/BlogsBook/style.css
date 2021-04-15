@@ -47,6 +47,7 @@ a:active {
     position: absolute;
     top: 150px;
 }
+
 .main-content{
     position: absolute;
     left: 450px;
@@ -65,9 +66,13 @@ a:active {
     border-top: 1px solid black;
     border-radius: 5px;
 }
+
 .container #blog a.title{
     font-size: 25px;
     white-space: nowrap;
+}
+.container #blog #negative a.title{
+  color: red;
 }
 .container #blog .content{
     padding-top: 10px;

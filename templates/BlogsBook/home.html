@@ -5,7 +5,13 @@
      {% for blog in blogs.object_list %}
          <div id="blog">
              <div>
+                 {% if blog.sentiment == 1 %}
                  <a class="title" href="{% url 'BlogsBook:view-blog' blog.id %}">{{ blog.Title }}</a>
+                 {% else %}
+                 <div id="negative">
+                    <p style="color: red;"><a class="title" href="{% url 'BlogsBook:view-blog' blog.id %}">{{ blog.Title }}</a></p>
+                 </div>
+                 {% endif %}
              </div>
              <div class="content">
                  Authored by: {{ blog.Creator }}

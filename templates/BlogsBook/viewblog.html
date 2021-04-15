@@ -7,11 +7,15 @@
        <div id = "blog">
 
            <div style="padding-left: 10px;">
-               {% if blog.sentiment %}
-                   <h2 style="font-size: 32px">{{ blog.Title }}</h2><br>
+              <div style="font-size: 30px;">
+               {% if blog.sentiment == 1 %}
+                   <h2 style="font-size: 30px;">{{ blog.Title }}</h2><br>
                {% else %}
-                   <h2 style="font-size: 32px" style="color: red">{{ blog.Title }}</h2><br>
+                   <h2 style="color: red;">{{ blog.Title }}</h2><br>
                {% endif %}
+             </div>
+               
+               
                <p style="font-size: 25px">Authored by: <a href="{% url 'BlogsBook:view-user' blog.Creator.id %}">{{ blog.Creator }}</a></p><br>
            </div>
            <div class="content">

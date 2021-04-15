@@ -12,9 +12,6 @@ import boto3
 # Create your views here.
 
 
-comprehend = boto3.client(service_name='comprehend', region_name='us-east-2')
-
-
 def register(request):
     registered = False
     if request.method == 'POST':
@@ -27,7 +24,6 @@ def register(request):
             personal = personal_form.save(commit=False)
             personal.user = user
             personal_form.save()
-            print(personal_form)
             registered = True
             return HttpResponseRedirect(reverse('BlogsBook:user-login'))
         else:
@@ -44,7 +40,6 @@ def register(request):
 def home(request):
     blogs = Blog.objects.order_by('-DatePosted')
     blogs = Paginator(blogs, 2)
-    print(blogs.num_pages)
     return render(request, 'BlogsBook/home.html', {'blogs': blogs})
 
 
@@ -57,13 +52,14 @@ def add_blog(request):
             categories = request.POST['name'].split(", ")
             blog = blog_form.save(commit=False)
             blog.Creator = User.objects.get(username=request.user)
+            comprehend = boto3.client(service_name='comprehend', region_name='us-east-1')
             sentiment_data = comprehend.detect_sentiment(Text=request.POST['Content'], LanguageCode='en')
-
             if sentiment_data['Sentiment'] == 'NEGATIVE':
                 print(sentiment_data)
-                blog.sentiment = False
+                blog.sentiment = 0
             else:
-                blog.sentiment = True
+                blog.sentiment = 1
+
             blog.save()
             for category in categories:
                 c = Category(name=category)

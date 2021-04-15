@@ -32,9 +32,17 @@
        {% endif %}
        {% for blog in list2 %}
          <div class="list2">
+             {% if blog.sentiment == 1 %}
              <a style="font-size: 25px" href="{% url 'BlogsBook:view-blog' blog.id %}">{{ blog.Title }}</a>
              {{ blog.Creator }}<br>
              {{ blog.Content | truncatewords:10 }}
+             {% else %}
+             <div>
+             <p style="color: red;"><a style="font-size: 25px" href="{% url 'BlogsBook:view-blog' blog.id %}">{{ blog.Title }}</a></p>
+             {{ blog.Creator }}<br>
+             {{ blog.Content | truncatewords:10 }}
+             </div>
+             {% endif %}
          </div>
        {% endfor %}
      </div>

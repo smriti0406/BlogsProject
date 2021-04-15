@@ -12,8 +12,6 @@ class UserProfileInfo(models.Model):
     profession = models.CharField(max_length=50)
     profile_pic = models.ImageField(upload_to='profile_pics/', blank=True)
 
-    # def file_and_pathname(self):
-    #     upload_to =
 
     def __str__(self):
         return self.user.username
